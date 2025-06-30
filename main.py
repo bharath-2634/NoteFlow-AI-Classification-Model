@@ -15,7 +15,7 @@ app = FastAPI()
 load_dotenv()
 mongo_uri = os.getenv("MONGO_URL")
 
-classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
+classifier = pipeline("zero-shot-classification", model="typeform/distilbert-base-uncased-mnli")
 
 client = MongoClient(mongo_uri)
 
