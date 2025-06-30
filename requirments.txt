@@ -7,5 +7,5 @@ python-multipart
 pymongo
 python-docx
 python-pptx
-textract
+textract==1.6.4
 python-dotenv
