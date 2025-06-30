@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+transformers
+torch
+pdfplumber
+python-multipart
+pymongo
+python-docx
+python-pptx
+textract
+python-dotenv
