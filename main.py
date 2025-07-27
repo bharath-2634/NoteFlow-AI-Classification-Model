@@ -7,7 +7,6 @@ from bson import ObjectId
 import docx
 from pptx import Presentation
 import os
-import textract
 from dotenv import load_dotenv
 from fastapi import HTTPException
 
@@ -16,18 +15,13 @@ app = FastAPI()
 load_dotenv()
 mongo_uri = os.getenv("MONGO_URL")
 
-classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
+classifier = pipeline("zero-shot-classification", model="typeform/distilbert-base-uncased-mnli")
 
 client = MongoClient(mongo_uri)
 
 db = client["test"]
 user_collection = db["users"]
 
-def extract_text_fallback(file_bytes, filename):
-    try:
-        return textract.process(filename, input_stream=io.BytesIO(file_bytes)).decode('utf-8').strip()
-    except Exception as e:
-        return None
 
 def extract_text_from_pdf(file_bytes):
     with pdfplumber.open(io.BytesIO(file_bytes)) as pdf:
